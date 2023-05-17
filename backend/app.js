@@ -1,11 +1,15 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const router = require('./router')
+const cors = require('cors')
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+const corsOptions = {
+  origin: "http://localhost:5173"
+};
+app.use(cors(corsOptions));
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+router(app)
+
+app.listen(3000, () => {
+  console.log('Server is running on http://localhost:3000')
 })
