@@ -8,10 +8,14 @@ let db = mysql.createConnection({
     database: 'msa_db'
 })
 
-db.query("select* from user", (err, data) => {
-    if (err) {
-        console.log("error!", err)
-    } else {
-        console.log("success!", data)
-    }
-})
+function login(username, password)
+{
+    return true;
+}
+
+function post(uid, title, content)
+{
+    console.log("uid="+uid+" title=",title);
+}
+
+module.exports = {login, post};
