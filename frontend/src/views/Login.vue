@@ -1,7 +1,27 @@
 <template>
-  <input type="text" v-model="formData.uid">
-  <input type="password" v-model="formData.pwd">
-  <input type="submit" value="login" @click="login">
+  <body>
+    <div class="center" >
+      <span>
+        登舱
+      </span>
+      <span class="a">
+        账号
+      </span>
+      <div>
+        <input type="text" v-model="formData.uid">
+      </div>
+      <span>
+        密码
+      </span>
+      <div>
+        <input type="password" v-model="formData.pwd">
+      </div>
+      <div class="button">
+        <input type="submit" value="登录" @click="login">
+      </div>
+      
+    </div>
+  </body>
 </template>
 
 <script setup>
@@ -21,8 +41,21 @@ const login = () => {
       token.value = rep.data
       // console.log(formData)
       if (token.value) router.push('/feed')
-  })
+    })
 }
 </script>
 
-<style scoped></style>
+
+<style scoped>
+span{
+  color: white;
+  font-size: 12px;
+  display: block;
+  margin-bottom: 20px;
+}
+.center {
+  display: block;
+  width:50px;
+  margin: auto;
+}
+</style>
