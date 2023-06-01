@@ -11,9 +11,9 @@ router.get('/', (req, res) => {
 })
 
 router.post('/login', (req, res) => {
-  let { uid, pwd } = req.body
-  res.send(db.login(uid, pwd))
-  console.log(db.login(uid, pwd))
+  let { username, password } = req.body
+  res.send(db.login(username, password))
+  console.log(db.login(username, password))
 })
 
 router.get('/like', (req, res) => {

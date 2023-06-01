@@ -1,7 +1,7 @@
 const express = require('express')
 const mysql = require('mysql')
 
-let db = mysql.createConnection({
+let connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'Lala050502',
