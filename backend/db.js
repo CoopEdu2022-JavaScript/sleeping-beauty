@@ -4,18 +4,28 @@ const mysql = require('mysql')
 let db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '',
-    database: 'msa_db'
+    password: 'Lala050502',
+    database: 'test'
 })
 
-function login(username, password)
-{
-    return true;
-}
+db.query("SELECT username, password FROM users;", (err, data) => {
+    if (err) {
+        console.log("error!", err);
+    } else {
+        console.log("success!", data);
 
-function post(uid, title, content)
-{
-    console.log("uid="+uid+" title=",title);
-}
+        // 在成功后进行数据核对
+        const username = "desiredUsername";
+        const password = "desiredPassword";
+        const foundUser = data.find(user => user.username === 'uid');
 
-module.exports = {login, post};
+
+        if (foundUser) {
+            console.log("Credentials matched!");  // 用户名和密码匹配
+            return true;
+        } else {
+            console.log("Invalid credentials.");  // 用户名和密码不匹配
+            return false;
+        }
+    }
+});
