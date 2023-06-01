@@ -7,7 +7,7 @@
       <span class="a">
         账号
       </span>
-      <div>
+      <div class="kuang">
         <input type="text" v-model="formData.uid">
       </div>
       <span>
@@ -24,8 +24,8 @@
   </body>
 </template>
 
-<script setup>
-import http from '../api/http'
+<script setup> sd
+const http = require("..api/http")
 const router = useRouter()
 const formData = reactive({
   uid: '',
