@@ -8,7 +8,7 @@
         账号
       </span>
       <div class="kuang">
-        <input type="text" v-model="formData.uid">
+        <input type="text" v-model="formData.uid" placeholder="请输入">
       </div>
       <span>
         密码
