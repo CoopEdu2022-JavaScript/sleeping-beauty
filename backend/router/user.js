@@ -17,7 +17,7 @@ router.post('/login', (req, res) => {
 })
 
 router.get('/like', (req, res) => {
-  let { like } = req.body  // true false
+  let { content_id } = req.body  // true false
   // to db
   res.send(is_success)
 })
