@@ -2,6 +2,7 @@
   <button @click="back">back</button>
   <span>{{ title }}</span>
   <router-link to="/notification"><img src="" alt="notification"></router-link>
+  <Tag />
 </template>
 
 <script setup>
