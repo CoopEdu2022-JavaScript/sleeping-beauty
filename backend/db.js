@@ -33,6 +33,19 @@ function login(username, password)
 function post(uid, title, content)
 {
     console.log("uid="+uid+" title=",title);
+    const time = (new Date()).toISOString().slice(0, 19).replace('T', ' ')
+  db.query('INSERT INTO post (title, content, time, user_id) VALUES (?, ?, ?, ?)',
+    [title, content, time, uid], (err, data) => {
+    if (err) return err;
+    else return true;
+  })
 }
 
-module.exports = {login, post};
+function get_detail(id)
+{
+    db.query('SELECT * FROM post WHERE id = ?', post_id, (err, data) => {
+        return data;
+      })
+}
+
+module.exports = {login, post, get_detail};

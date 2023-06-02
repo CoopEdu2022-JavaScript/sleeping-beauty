@@ -16,15 +16,21 @@ router.post('/login', (req, res) => {
   console.log(db.login(username, password))
 })
 
-router.get('/like', (req, res) => {
+router.post('/like', (req, res) => {
   let { content_id } = req.body  // true false
   // to db
   res.send(is_success)
 })
 
+
+router.get('/detail/:id', (req, res) => {
+  let post_id = req.params.id
+  return db.get_detail(post_id);
+})
+
 router.post('/post', (req, res) => {
   let {uid, title, content} = req.body;
-  db.post(uid, title, content);
-  res.send(true);
+  let result = db.post(uid, title, content);
+  res.send(result);
 })
 module.exports = router
