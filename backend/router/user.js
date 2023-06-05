@@ -12,8 +12,12 @@ router.get('/', (req, res) => {
 
 router.post('/login', (req, res) => {
   let { username, password } = req.body
-  res.send(db.login(username, password))
-  console.log(db.login(username, password))
+  db.query('SELECT * FROM user WHERE username = ? AND password = ?', [username, password], (err, data) => {
+    if (data.length) res.send({
+      token: true,
+      user_id: data[0].id
+    })
+  })
 })
 
 router.post('/like', (req, res) => {
