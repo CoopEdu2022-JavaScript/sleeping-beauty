@@ -1,6 +1,6 @@
 <template>
   <router-view />
-  <div>token={{ token }}</div>
+  <!-- <div>token={{ token }}</div> -->
 </template>
 
 <script setup>

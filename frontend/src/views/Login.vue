@@ -17,9 +17,10 @@
       </div>
     </div>
     <div>
-      <img src="../image/login/background_moonshot.png" class="background">
+      <img src="../image/login/moonshot_background.png" class="background">
     </div>
       <img src="../image/login/background_1.png" class="light">
+      
   </div>
 </template>
 
@@ -52,6 +53,7 @@ input {
   border-bottom: 1px solid black;
   outline: none;
   width: 100%;
+  background-color: transparent;
 }
 
 span {
@@ -61,6 +63,7 @@ span {
   margin: 60px 0px 0px 0px;
   margin-bottom: 20px;
   border: 292px 84px;
+  background-color: transparent;
 }
 
 .center {
@@ -91,10 +94,15 @@ span {
   top: 300px;
   right: 0;
   bottom: 0;
-  width: 50%; /* 设置伪元素的宽度为页面的一半 */
+  z-index: -1;
+  width: 50%; 
   background-image: url('../image/login/background_1.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+}
+.button:active {
+  /* 添加交互效果样式 */
+  transform: translateY(2px);
 }
 </style>
