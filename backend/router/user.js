@@ -10,6 +10,7 @@ router.get('/', (req, res) => {
   res.send('hellaljksdflkajdskljoworld')
 })
 
+//if success, returns uid, else returns -1
 router.post('/login', (req, res) => {
   let { username, password } = req.body
   res.send(db.login(username, password))
@@ -29,8 +30,8 @@ router.get('/detail/:id', (req, res) => {
 })
 
 router.post('/post', (req, res) => {
-  let {uid, title, content} = req.body;
-  let result = db.post(uid, title, content);
+  let {uid, title, tag, content} = req.body;
+  let result = db.post(uid, title,tag, content);
   res.send(result);
 })
 module.exports = router

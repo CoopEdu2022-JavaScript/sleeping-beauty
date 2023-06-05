@@ -25,6 +25,7 @@ function login(username, password)
     //todo: hashed and salted passwords
     //todo: give the client a token instead of a simple true/false response
     let stat = false;
+    let uid = -1;
     console.log(username + " " + password + "\n");
     connection.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
         console.log("callback is executed");
@@ -34,19 +35,20 @@ function login(username, password)
         if (results.length > 0) {
             // Authenticate the user
             stat = true;
+            uid = results[0].uid;
         } else {
             stat = false;
         }			
     });
-    return stat;
+    return uid;
 }
 
-function post(uid, title, content)
+function post(uid, title, tag, content)
 {
     console.log("uid="+uid+" title=",title);
     const time = (new Date()).toISOString().slice(0, 19).replace('T', ' ')
-  db.query('INSERT INTO post (title, content, time, user_id) VALUES (?, ?, ?, ?)',
-    [title, content, time, uid], (err, data) => {
+  db.query('INSERT INTO post (title, content, tag, time, user_id) VALUES (?, ?, ?, ?, ?)',
+    [title, content, tag, time, uid], (err, data) => {
     if (err) return err;
     else return true;
   })
