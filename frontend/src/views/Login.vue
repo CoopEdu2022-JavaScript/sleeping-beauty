@@ -22,6 +22,7 @@
       <img src="../image/login/background_1.png" class="light">
       
   </div>
+  <div>{{ token }}</div>
 </template>
 
 <script setup>
@@ -38,10 +39,14 @@ let { token } = storeToRefs(userStore)
 const login = () => {
   http.post('/login', formData)
     .then(rep => {
-      token.value = rep.data
-      if (token.value) router.push('/feed')
+      token.value = rep.data;
+      if (token.value) router.push('/feed');
     })
-}
+    .catch(error => {
+      // 处理错误
+      console.error(error);
+    });
+};
 </script>
 
 <style scoped>
