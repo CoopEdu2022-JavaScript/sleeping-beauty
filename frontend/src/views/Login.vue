@@ -37,16 +37,13 @@ const userStore = useUserStore()
 let { token } = storeToRefs(userStore)
 
 const login = () => {
+  console.log(formData)
   http.post('/login', formData)
     .then(rep => {
-      token.value = rep.data;
-      if (token.value) router.push('/feed');
+      token.value = rep.data
+      if (token.value) router.push('/feed')
     })
-    .catch(error => {
-      // 处理错误
-      console.error(error);
-    });
-};
+}
 </script>
 
 <style scoped>

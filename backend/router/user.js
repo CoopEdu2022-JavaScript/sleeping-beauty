@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-
 router.use(express.json())
 router.use(express.urlencoded({ extended: true }))
 
@@ -12,9 +11,12 @@ router.get('/', (req, res) => {
 
 //if success, returns uid, else returns -1
 router.post('/login', (req, res) => {
-  let { username, password } = req.body
-  db.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, password], (err, data) => {
-    if (data.length) {
+  let { uid,pwd } = req.body
+  console.log(req.body);
+  db.query('SELECT * FROM users WHERE username = ? AND password = ?', [uid , pwd], (err, data) => {
+    console.log(uid);
+    console.log(data)
+    if (data) {
       res.send({
         token: true,
         user_id: data[0].id
