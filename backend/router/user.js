@@ -13,13 +13,16 @@ router.get('/', (req, res) => {
 //if success, returns uid, else returns -1
 router.post('/login', (req, res) => {
   let { username, password } = req.body
-  db.query('SELECT * FROM user WHERE username = ? AND password = ?', [username, password], (err, data) => {
-    if (data.length) res.send({
-      token: true,
-      user_id: data[0].id
-    })
+  db.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, password], (err, data) => {
+    if (data.length) {
+      res.send({
+        token: true,
+        user_id: data[0].id
+      })
+    }
   })
 })
+
 
 router.post('/like', (req, res) => {
   let { content_id } = req.body  // true false
