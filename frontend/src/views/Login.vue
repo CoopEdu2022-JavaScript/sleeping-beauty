@@ -11,6 +11,7 @@
       <span>密码</span>
       <div>
         <input type="password" v-model="formData.pwd" placeholder="请输入密码">
+        <!-- <p v-if="showErrorMessage" class="error-message">Invalid username or password</p> -->
       </div>
       <div >
         <input type="submit" value="登录" @click="login" class="button">
@@ -31,8 +32,9 @@ const router = useRouter()
 const formData = reactive({
   uid: '',
   pwd: ''
+  
 })
-
+// let showErrorMessage = false;
 const userStore = useUserStore()
 let { token } = storeToRefs(userStore)
 
@@ -41,7 +43,9 @@ const login = () => {
   http.post('/login', formData)
     .then(rep => {
       token.value = rep.data
-      if (token.value) router.push('/feed')
+      if (token.value) {
+        router.push('/feed')
+      }
     })
 }
 </script>

@@ -16,15 +16,26 @@ router.post('/login', (req, res) => {
   db.query('SELECT * FROM users WHERE username = ? AND password = ?', [uid , pwd], (err, data) => {
     console.log(uid);
     console.log(data)
-    if (data) {
+    if (data.length) {
+      console.log(data)
       res.send({
         token: true,
         user_id: data[0].id
       })
-    }
+    }else console.log("密码错误");
   })
 })
-
+// else  db.query('SELECT * FROM users WHERE username = ?' , [uid], (err, data) =>{
+//   if (data.length) {
+//     console.log(data)
+//     res.send({
+//       error_type = "uid_mis"
+//     })
+// }else res.send({
+//   error_type = "pwd_mis"})
+// console.log("密码错误");
+// })
+// })
 
 router.post('/like', (req, res) => {
   let { content_id } = req.body  // true false
