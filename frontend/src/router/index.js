@@ -16,14 +16,20 @@ const routes = [
     component: () => import('../views/Profile.vue'),
     // meta: { requiresAuth: true }
   },
+
+
   {
     path: '/feed',
     name: 'Feed',
     component: () => import('../views/Feed.vue'),
     // meta: { requiresAuth: true }
+    // components: {
+    //   default: HomePage,
+    //   tag: Tag
+    // }
   },
   {
-    path: '/feed/detail',
+    path: '/feed/detail/:id',
     name: 'Detail',
     component: () => import('../views/Detail.vue')
   },
