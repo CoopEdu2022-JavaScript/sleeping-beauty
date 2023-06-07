@@ -4,7 +4,8 @@ export const useUserStore = defineStore(
   'user',
   () => {
     const token = ref(false)
-    return { token }
+    const user_id = ref()
+    return { token, user_id }
   },
   {
     persist: true

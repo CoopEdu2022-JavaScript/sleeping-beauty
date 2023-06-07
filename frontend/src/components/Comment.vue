@@ -2,13 +2,21 @@
   <hr />
   <div>
     <img src="" alt="/">
-    <span>name: </span>
-    <span>time: </span>
-    <span>comment: </span>
+    <span>name: {{ comment.name }}</span>
+    <span>time: {{ comment.time }}</span>
+    <span>comment: {{ comment.comment }}</span>
   </div>
 </template>
 
 <script setup>
+import { reactive } from 'vue';
+
+defineProps({
+  comment: Object,
+})
+
+const comment = reactive(props.comment);
+
 </script>
 
 <style scoped>

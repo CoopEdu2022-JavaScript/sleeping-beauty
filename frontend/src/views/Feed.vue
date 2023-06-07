@@ -1,25 +1,29 @@
 <template>
-  <NavBar />
-  <div v-for="i in 5" :key="i">
+  <body>
+    <NavBar />
+  <div v-for="i in 5" :key="i" @click="goDetail(post_id)">
     <Post />
   </div>
   <!-- <div v-for="post in post_list" @click="goDetail(post.id)">
     <Post :post="post"/>
   </div> -->
   <TabBar />
+  </body>
 </template>
 
 <script setup>
 let post_list = reactive([])
-
+const post_id = 1;
 const router = useRouter()
-const goDetail = (post_id) => router.push({
+const goDetail = (post_id) => {
+  router.push({
   path: `/feed/detail/${post_id}`
 })
+}
 
-http.get('/feed').then(rep => {
-  post_list.splice(0, 0, ...rep.data)  // reactively update data
-})
+// http.get('/feed').then(rep => {
+//   post_list.splice(0, 0, ...rep.data)  // reactively update data
+// })
 </script>
 
 <style scoped>
