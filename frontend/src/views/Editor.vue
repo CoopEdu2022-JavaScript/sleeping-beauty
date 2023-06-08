@@ -14,8 +14,9 @@ const formData = reactive({
 
 const router = useRouter()
 const post = () => {
+  // console.log(formData)
   http.post('/feed/post', formData).then(rep => {
-    console.log(formData)
+    // console.log(rep)
     if (rep.data) {
       router.push('/feed')
     }

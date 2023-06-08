@@ -1,12 +1,8 @@
 <template>
   <hr />
   <div @click="goDetail">
-    <!-- 头像的图片怎么从数据库调取？ -->
     <div class="head">
-      <!-- <img v-bind:src= "post.portrait" alt=""> -->
-      <!-- <img src="https://img2.baidu.com/it/u=3618236253,1028428296&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500" alt="" class="portrait"> -->
-      <img :src= "post.portrait" alt="" class="portrait">
-
+     <img :src= "post.portrait" alt="" class="portrait">
       <div>
         <span>name: {{ post.name }}</span>
         <span>grade: {{ post.grade }}</span>
@@ -41,7 +37,16 @@ const post = reactive({
   time: "9:46",
   content: "hahaha",
   portrait: "IMG_9608_1.png",
+  likes: 0,
+  id: 0,
 })
+
+const like = () => {
+  post.liked = !post.liked  //从后端传过来的，1表示点赞了0表示没有点赞
+  post.likes += (post.liked ? 1 : -1)  // 响应式数据变化，实时显示在页面
+  if (post.liked) http.post(`feed/${post.id}/like`)
+  else http.post(`feed/${post.id}/unlike`)
+}
 
 </script>
 
