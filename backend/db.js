@@ -38,6 +38,14 @@ function post(uid, title, content)
   })
 }
 
+function comment(post_id, content, user_id)
+{
+    db.query(`INSERT INTO comment (content, post_id, user_id, time) VALUES ('${content}', ${post_id}, ${user_id}, NOW());
+            UPDATE post SET comments = comments + 1 WHERE id = ${post_id}`, (err) => {
+    if (err) return err;
+    else return true;
+    })
+}
 function get_detail(id)
 {
     db.query('SELECT * FROM post WHERE id = ?', post_id, (err, data) => {
@@ -45,4 +53,4 @@ function get_detail(id)
     })
 }
 
-module.exports = {login, post, get_detail};
+module.exports = {login, post, comment, get_detail};

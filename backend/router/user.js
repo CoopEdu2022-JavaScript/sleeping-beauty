@@ -27,6 +27,20 @@ router.get('/detail/:id', (req, res) => {
   res.send(db.get_detail(post_id));
 })
 
+router.post('/:id/comment', (req, res) => {
+  let post_id = req.params.id
+  let { content, user_id } = req.body
+  let stat = db.comment(post_id, content, user_id);
+  if(stat == true)
+  {
+    res.send(true);
+  }
+  else
+  {
+    res.status(500).json(stat);
+  }
+})
+
 router.post('/post', (req, res) => {
   let {uid, title, tag, content} = req.body;
   let result = db.post(uid, title,tag, content);
