@@ -46,7 +46,7 @@ router.post('/like', (req, res) => {
 
 router.get('/detail/:id', (req, res) => {
   let post_id = req.params.id
-  return db.get_detail(post_id);
+  res.send(db.get_detail(post_id));
 })
 
 router.post('/post', (req, res) => {
