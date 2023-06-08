@@ -1,12 +1,13 @@
 <template>
-    <h1>{{ post.tag }}</h1> 
-    <p>{{ post.content }}</p>
-    <div class="parent">
-        <!-- 下面这里可能还需要有一个自动输入tag内容的功能 -->
-        <router-link to="/editor"><img src="" alt="Join tag"></router-link>
-        <span>participant: {{ post.participant }} 人参与</span>
-    </div>
-    
+    <div>
+        <h1>{{ post.tag }}</h1> 
+        <p>{{ post.content }}</p>
+        <div class="parent">
+            <!-- 下面这里可能还需要有一个自动输入tag内容的功能 -->
+            <router-link to="/editor"><img src="" alt="Join tag"></router-link>
+            <span>participant: {{ post.participant }} 人参与</span>
+        </div>
+    </div>    
 </template>
 
 

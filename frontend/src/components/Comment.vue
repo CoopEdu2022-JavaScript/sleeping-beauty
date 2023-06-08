@@ -11,9 +11,10 @@
 <script setup>
 import { reactive } from 'vue';
 
-defineProps({
+const props = defineProps({
   comment: Object,
 })
+
 
 const comment = reactive(props.comment);
 
