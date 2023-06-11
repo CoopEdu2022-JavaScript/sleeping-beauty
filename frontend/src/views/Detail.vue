@@ -1,7 +1,6 @@
 <template>
   <NavBar />
   <Post v-for="post in post_list" :post="post" />
-  <!-- 这里评论还是写死的，仅供展示 -->
   <div v-for="comment in comment_list">
     <Comment :comment="comment"/>
   </div>
@@ -11,7 +10,17 @@
 
 <script setup>
 // 这里和 Feed 获取的逻辑一致，从列表里获取
-let post_list = reactive([])
+let post_list = reactive([
+{
+  name: "11111",
+  grade:"10",
+  time: "9:46",
+  content: "hahaha",
+  portrait: "./portrait/IMG_9608_1.png",
+  likes: 3,
+  id: 1,
+},
+])
 let comment_list = reactive([
   {name:1,time:1,comment:1},
   {name:2,time:2,comment:2},
@@ -28,12 +37,16 @@ const post_id = useRoute().params.id
 //   post_list.splice(0, 0, ...rep.data)  // reactively update data
 // })
 
-// 让黄书恒一次性把post_list和comment_list都发过来 <<<——————————————
 
+// 让黄书恒一次性把post_list和comment_list都发过来 <<<——————————————
+//只需要接收一个数组，这个数组应该包含根据post.id查询到的post以及该post的所有comment
 // http.get(`/feed/detail/${post_id}`).then(rep => {
-//   comment_list.splice(0, 0, ...rep.data)  // reactively update data
+//   comment_list.splice(0, 0, ...rep.data)  // 这里相当于是在末尾插入rep.data，
 // })
 
+
+
+//formData 就是我需要给后端发送的东西，里面包含了我给后端具体发送的东西，视情况增加
 const formData = reactive({
   content: '',
   // user_id: storeToRefs(useUserStore()).user_id.value,
