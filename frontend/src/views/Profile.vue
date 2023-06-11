@@ -2,9 +2,12 @@
   <NavBar />
   <div>info: {{ info }}</div>
   <button @click="logout">logout</button>
-  <TabBar />
+  
+  <div v-for="post in post_list">
+    <Post :post="post" />
+  </div>
 
-  <post v-for="post in post_list" :key="post" :post-id="post" />
+  <TabBar />
 </template>
 
 <script setup>
@@ -19,22 +22,19 @@ const logout = () => {
   router.push('/login')
 }
 
-const post_list = ref([
+const post_list = reactive([
   {
   name: "11111",
   grade:"10",
   time: "9:46",
   content: "hahaha",
-  portrait: "IMG_9608_1.png",
+  portrait: "./portrait/IMG_9608_1.png",
   likes: 0,
   id: 0,
   },
-  {
-
-  }
 ]); // 用于存储post列表的数组
-
-axios.get(`/profile/${user_id.value}`)
+// console.log(post_list.value)
+http.get(`/profile/${user_id.value}`)
   .then(response => {
     post_list.splice(0, post_list.length, ...rep.data); // 假设返回的数据是一个包含post列表的数组
   })
@@ -49,6 +49,7 @@ http.get(`/profile/${user_id.value}`)
   .catch(error => {
     console.error(error);
   });
+// console.log(post_list.value)
 </script>
 
 <style scoped></style>
