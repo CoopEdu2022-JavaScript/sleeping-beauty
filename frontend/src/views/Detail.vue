@@ -40,9 +40,9 @@ const post_id = useRoute().params.id
 
 // 让黄书恒一次性把post_list和comment_list都发过来 <<<——————————————
 //只需要接收一个数组，这个数组应该包含根据post.id查询到的post以及该post的所有comment
-// http.get(`/feed/detail/${post_id}`).then(rep => {
-//   comment_list.splice(0, 0, ...rep.data)  // 这里相当于是在末尾插入rep.data，
-// })
+http.get(`/feed/detail/${post_id}`).then(rep => {
+  comment_list.splice(0, 0, ...rep.data)  // 这里相当于是在末尾插入rep.data，
+})
 
 
 
