@@ -6,11 +6,11 @@
       </div>
       <span class="r_side">账号</span>
       <div class="kuang">
-        <input type="text" v-model="formData.uid" placeholder="请输入账号/学号/邮箱">
+        <input type="text" v-model="formData.username" placeholder="请输入账号/学号/邮箱">
       </div>
       <span>密码</span>
       <div>
-        <input type="password" v-model="formData.pwd" placeholder="请输入密码">
+        <input type="password" v-model="formData.password" placeholder="请输入密码">
         <!-- <p v-if="showErrorMessage" class="error-message">Invalid username or password</p> -->
       </div>
       <div >
@@ -30,8 +30,8 @@
 import http from '../api/http'
 const router = useRouter()
 const formData = reactive({
-  uid: '',
-  pwd: ''
+  username: '',
+  password: ''
   
 })
 // let showErrorMessage = false;
@@ -39,11 +39,11 @@ const userStore = useUserStore()
 let { token } = storeToRefs(userStore)
 
 const login = () => {
-  console.log(formData)
+  // console.log(formData)
   http.post('/login', formData)
-    .then(rep => {
-      token.value = rep.data
-      if (token.value) {
+    .then(res => {
+      console.log(1231231313, res.data)
+      if (res.data.token == true) {
         router.push('/feed')
       }
     })

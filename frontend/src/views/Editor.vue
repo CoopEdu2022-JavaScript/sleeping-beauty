@@ -12,10 +12,10 @@ const formData = reactive({
   tag: '',
 })
 
-const router = useRouter()
+const router = postRouter()
 const post = () => {
-  // console.log(formData)
-  http.post('/feed/post', formData).then(rep => {
+console.log(formData)
+  http.post('/editor', formData).then(rep => {
     // console.log(rep)
     if (rep.data) {
       router.push('/feed')
