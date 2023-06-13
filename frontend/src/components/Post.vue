@@ -64,7 +64,10 @@ const like = () => {
   margin-left: 10px;
 }
 .main {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .main p {
