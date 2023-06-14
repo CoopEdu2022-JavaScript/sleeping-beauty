@@ -4,7 +4,7 @@
     <div class="head">
      <img :src= "post.portrait" alt="" class="portrait">
       <div>
-        <span>name: {{ post.name }}</span>
+        <span>name: {{ post.username }}</span>
         <span>grade: {{ post.grade }}</span>
       </div>
     </div>
@@ -26,19 +26,11 @@
 <script setup>
 import { reactive } from 'vue';
 
-defineProps({
+const props = defineProps({
   post: Object,
 })
-
-const post = reactive({
-  name: "11111",
-  grade:"10",
-  time: "9:46",
-  content: "hahaha",
-  portrait: "IMG_9608_1.png",
-  likes: 0,
-  id: 0,
-})
+const post = reactive(props.post)
+console.log(post)
 
 const like = () => {
   post.liked = !post.liked  //从后端传过来的，1表示点赞了0表示没有点赞

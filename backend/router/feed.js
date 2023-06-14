@@ -5,9 +5,12 @@ const { setToken, verifyToken } = require('../auth')
 router.use(express.json())
 router.use(express.urlencoded({ extended: true }))
 
-router.get('/', (req, res) => {
-  db.query(`SELECT post.*, users.username, IF(like.id, 1, 0) AS liked FROM post INNER JOIN users ON post.user_id = user.id
-  LEFT JOIN likes ON likes.post_id = post.id and likes.user_id = ${user_id}`, (err, data) => {
+router.get('/', verifyToken, (req, res) => {
+  let user_id = res.locals.token
+  console.log(user_id)
+  db.query(`SELECT post.*, users.*, IF(likes.id, 1, 0) AS liked FROM post INNER JOIN users ON post.user_id = users.id
+  LEFT JOIN likes ON likes.post_id = post.post_id and likes.user_id = ${user_id}`, (err, data) => {
+    console.log(data)
     res.send(data)
   })
 })

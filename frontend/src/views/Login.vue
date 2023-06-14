@@ -48,6 +48,7 @@ const login = () => {
     return
   }
   http.post('/login', formData).then(rep => {
+    console.log(rep.data)
     if (rep.data.code === 0) {
       user_id.value = rep.data.user_id
       token.value = rep.data.token

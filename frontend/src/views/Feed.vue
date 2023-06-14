@@ -14,43 +14,9 @@
 </template>
 
 <script setup>
+import { useUserStore } from '../store/user';
+
   let post_list = reactive([
-  {
-    name: "11111",
-    grade:"10",
-    time: "9:46",
-    content: "hahaha",
-    portrait: "./portrait/IMG_9608_1.png",
-    likes: 3,
-    id: 1,
-  },
-  {
-    name: "222222",
-    grade:"10",
-    time: "2:22",
-    content: "开心",
-    portrait: "./portrait/1.jpg",
-    likes: 999,
-    id: 2,
-  },
-  {
-    name: "333333333",
-    grade:"10",
-    time: "3:33",
-    content: "弄死我皇后欸发",
-    portrait: "./portrait/2.jpg",
-    likes: 2,
-    id: 3,
-  },
-  {
-    name: "44444444",
-    grade:"10",
-    time: "4:44",
-    content: "拉克斯基的回复了呢据传闻",
-    portrait: "./portrait/2.jpg",
-    likes: 14,
-    id: 4,
-  },
   ])
 
 
@@ -62,7 +28,8 @@
   }
 
   http.get('/feed').then(rep => {
-    post_list.splice(0, 0, ...rep.data)  // reactively update data
+    console.log(rep.data)
+    post_list.splice(0, post_list.length, ...rep.data)  // reactively update data
   })
 </script>
 
