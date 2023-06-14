@@ -11,7 +11,7 @@
     <div class="main">
       <p>content: {{ post.content }}</p>
       <div class="image">
-        <img src="https://www.automobilismo.it/files/articoli/3/5/7/35783/B_nissan-skyline-gtr34-1.jpg" alt=" ">
+        
       </div>
     </div>
     <div>
@@ -24,21 +24,17 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue';
-
 const props = defineProps({
-  post: Object,
+  post: Object
 })
 const post = reactive(props.post)
-console.log(post)
 
 const like = () => {
-  post.liked = !post.liked  //从后端传过来的，1表示点赞了0表示没有点赞
-  post.likes += (post.liked ? 1 : -1)  // 响应式数据变化，实时显示在页面
+  post.liked = !post.liked
+  post.likes += (post.liked ? 1 : -1)
   if (post.liked) http.post(`feed/${post.id}/like`)
   else http.post(`feed/${post.id}/unlike`)
 }
-
 </script>
 
 <style scoped>

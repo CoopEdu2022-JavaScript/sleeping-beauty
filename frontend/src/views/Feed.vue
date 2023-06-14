@@ -2,7 +2,7 @@
   <NavBar />
   <div class="area">
     <div class="tagsContainer">
-      <div v-for="i in 5" :key="i" class="tags" >
+      <div class="tags" >
         <Tag />
       </div>
     </div>
@@ -14,12 +14,10 @@
 </template>
 
 <script setup>
-import { useUserStore } from '../store/user';
 
-  let post_list = reactive([
-  ])
+  let post_list = reactive([])
 
-
+  
   const router = useRouter()
   const goDetail = (post_id) => {  //
     router.push({
@@ -27,8 +25,8 @@ import { useUserStore } from '../store/user';
   })
   }
 
-  http.get('/feed').then(rep => {
-    console.log(rep.data)
+  http.get('/feed').then(rep => { 
+    console.log(rep)
     post_list.splice(0, post_list.length, ...rep.data)  // reactively update data
   })
 </script>
@@ -50,4 +48,4 @@ import { useUserStore } from '../store/user';
   max-height: 730px;
   overflow: scroll;
   }
-</style>
+</style> 

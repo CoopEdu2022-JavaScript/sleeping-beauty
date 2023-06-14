@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 //if success, returns uid, else returns -1
 router.post('/login', (req, res) => {
   const { username, password } = req.body;
-  db.query(`SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`, (err, data) => {
+  db.query(`SELECT * FROM user WHERE username = '${username}' AND password = '${password}'`, (err, data) => {
     if (data.length) {
       const user_id = data[0].id
       const token = setToken({ user_id })
@@ -25,21 +25,17 @@ router.post('/login', (req, res) => {
 
 router.post('/editor', verifyToken, (req, res) => {
   let user_id = res.locals.token
-  console.log(user_id, 99999)
-  try {
-    let { title, content, tag  } = req.body
-    console.log(1111, req.body)
-    db.query(`INSERT INTO post (title, content,time,likes,comments,user_id) VALUES ('${title}', '${content}', NOW(),0,0,${user_id})`,
-      (err) => {
-        console.log(err)
-        if (err) res.status(500).json({ err })
-        else res.send(true)
-      })
-  } catch (err) {
-    console.log(err, "post.js出错")
-  }
-
+  let title = req.body.title
+  let content = req.body.content
+  console.log(title, content)
+  console.log(user_id)
+  db.query(`INSERT INTO post (title, content, user_id, times) VALUES ('${title}', '${content}', ${user_id}, NOW())`, (err) => {
+    if (err) res.status(500).json({ err })
+    else res.send(true)
+  })
 })
+
+
 
 // router.get('/profile/:id', verifyToken, (req, res) => {
 //   let user_id = req.params.id

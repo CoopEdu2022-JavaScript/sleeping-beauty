@@ -18,4 +18,12 @@ http.interceptors.request.use( // Request Interceptor
   error => Promise.reject(error)
 )
 
+// http.post(`feed/${post.id}/like`, { value: 666 })
+//   .then(res => {
+//     console.log("1144512312")
+//   })
+//   .catch(error => {
+//     console.log(82790123)
+//   })
+
 export default http

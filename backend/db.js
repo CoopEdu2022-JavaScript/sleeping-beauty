@@ -6,13 +6,12 @@ const dbConfig = {
   host: 'localhost',
   user: 'root',
   password: 'Lala050502',
-  database: 'test',
+  database: 'msa_db',
   multipleStatements: true  // enable multiple sql in one query
 }
 
 let db = mysql.createConnection(dbConfig)
-// db.query("INSERT INTO post (title, content, time,comments, user_id) VALUES ('${title}', '${content}', NOW(),0,'${user_id}')",
-//       ['31221321', '3434234', 432432423], (err) => {
+// db.query(`INSERT INTO post (title, content, tag , user_id, time) VALUES ('hahahaha', 'moamaosd','323123' ,1, NOW())`, (err) => {
 //         console.log(1111122222)
 //       })
 

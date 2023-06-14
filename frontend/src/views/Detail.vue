@@ -33,9 +33,9 @@ let comment_list = reactive([
 const post_id = useRoute().params.id
 
 // 发送 get 请求，和 Profile 的处理逻辑一致
-// http.get(`/feed/detail/${post_id}`).then(rep => {
-//   post_list.splice(0, 0, ...rep.data)  // reactively update data
-// })
+http.get(`/feed/detail/${post_id}`).then(rep => {
+  post_list.splice(0, 0, ...rep.data)  // reactively update data
+})
 
 
 // 让黄书恒一次性把post_list和comment_list都发过来 <<<——————————————

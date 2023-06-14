@@ -12,7 +12,7 @@ const router = useRouter()
 const formData = reactive({
   title: '',
   content: '',
-  tag: '',
+
 })
 
 

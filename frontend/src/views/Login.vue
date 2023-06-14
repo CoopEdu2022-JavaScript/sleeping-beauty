@@ -40,7 +40,7 @@ const formData = reactive({
 
 
 const { user_id, token } = storeToRefs(useUserStore())
-
+const msg = ref('')
 
 const login = () => {
   if (!formData.username || !formData.password) {
@@ -48,11 +48,10 @@ const login = () => {
     return
   }
   http.post('/login', formData).then(rep => {
-    console.log(rep.data)
+    console.log(11111,rep.data.code)
     if (rep.data.code === 0) {
       user_id.value = rep.data.user_id
       token.value = rep.data.token
-      console.log(token.value)
       router.push('/feed')
     } else {
       msg.value = rep.data.msg
