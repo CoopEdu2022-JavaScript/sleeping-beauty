@@ -11,7 +11,10 @@ const dbConfig = {
 }
 
 let db = mysql.createConnection(dbConfig)
-
+// db.query("INSERT INTO post (title, content, time,comments, user_id) VALUES ('${title}', '${content}', NOW(),0,'${user_id}')",
+//       ['31221321', '3434234', 432432423], (err) => {
+//         console.log(1111122222)
+//       })
 
 // const jwt_auth = require('./auth/index')
 // const login = (username, password) => {

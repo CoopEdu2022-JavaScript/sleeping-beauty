@@ -11,19 +11,7 @@ router.get('/', (req, res) => {
   })
 })
 
-router.post('/editor', (req, res) => {
-  try {
-    let { title, content, user_id } = req.body
-    db.query("INSERT INTO post (title, content, time,comments, user_id) VALUES ('${title}', '${content}', NOW(),0,'${user_id}')",
-      [title, content, time, user_id], (err, data) => {
-        if (err) res.status(500).json({ err })
-        else res.send(true)
-      })
-  } catch(err){
-    console.log(err,"post.js出错")
-  }
 
-})
 
 
 router.get('/detail/:id', (req, res) => {

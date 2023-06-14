@@ -6,13 +6,16 @@
 </template>
 
 <script setup>
+import http from '../api/http'
+import{useRouter} from 'vue-router'
+const router = useRouter()
 const formData = reactive({
   title: '',
   content: '',
   tag: '',
 })
 
-const router = postRouter()
+
 const post = () => {
 console.log(formData)
   http.post('/editor', formData).then(rep => {

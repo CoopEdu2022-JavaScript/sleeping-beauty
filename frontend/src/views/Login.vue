@@ -28,6 +28,8 @@
 
 <script setup>
 import http from '../api/http'
+import { useRouter } from 'vue-router'
+
 const router = useRouter()
 const formData = reactive({
   username: '',
@@ -35,18 +37,25 @@ const formData = reactive({
   
 })
 // let showErrorMessage = false;
-const userStore = useUserStore()
-let { token } = storeToRefs(userStore)
+
+
+const { user_id, token } = storeToRefs(useUserStore())
+
 
 const login = () => {
-  // console.log(formData)
-  http.post('/login', formData)
-    .then(res => {
-      console.log(1231231313, res.data)
-      if (res.data.token == true) {
-        router.push('/feed')
-      }
-    })
+  if (!formData.username || !formData.password) {
+    msg.value = 'empty username or password!'
+    return
+  }
+  http.post('/login', formData).then(rep => {
+    if (rep.data.code === 0) {
+      user_id.value = rep.data.user_id
+      token.value = rep.data.token
+      console.log(token.value)
+      router.push('/feed')
+    } else {
+      msg.value = rep.data.msg
+    }})
 }
 </script>
 
