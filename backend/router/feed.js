@@ -84,8 +84,7 @@ router.get('/:id/comment', verifyToken, (req, res) => {
 
 router.get('/detail/:id', verifyToken, (req, res) => {
   let post_id = req.params.id
-  let user_id = res.locals.token
-  db.query( `SELECT * FROM post WHERE id = '${post_id}' AND user_id = '${user_id}'`,(err, data) => {
+  db.query( `SELECT * FROM post WHERE id = '${post_id}'`,(err, data) => {
     if (err) res.status(500).json({ err })
     else res.send(data)
   })
