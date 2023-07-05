@@ -1,27 +1,29 @@
 <template>
   <hr />
   <div>
-    <div class="head">
-     <img :src= "post.portrait" alt="" class="portrait">
-      <div>
-        <span>name: {{ post.username }}</span>
-        <span>grade: {{ post.grade }}</span>
-      </div>
+    <div class="body">
+      <div class="head">
+          <img :src= "post.portrait" alt="" class="portrait">
+            <div>
+              <span>{{ post.username }}</span>
+              <span>{{ post.grade }}</span>
+            </div>
+          </div>
+          <div class="main">
+            <p>{{ post.content }}</p>
+            <div class="image">
+              
+            </div>
+          </div>
+          <div>
+            <span >{{ post.times }}</span>
+          </div>
+          <span >{{ post.comments }}</span>
+        </div>
+        <span>&nbsp;</span>
+        <button @click.stop="like" :state="post.liked?'press':'release'"></button>{{ post.likes }}
     </div>
-    <div class="main">
-      <p>content: {{ post.content }}</p>
-      <div class="image">
-        
-      </div>
-    </div>
-    <div>
-      <span >time: {{ post.time }}</span>
-    </div>
-    <span >comments: {{ post.comments }}</span>
-  </div>
-  <span>&nbsp;</span>
-  <button @click.stop="like" :state="post.liked?'press':'release'">likes</button>: {{ post.likes }}
-</template>
+    </template>
 
 <script setup>
 const props = defineProps({
@@ -38,6 +40,9 @@ const like = () => {
 </script>
 
 <style scoped>
+.body {
+  margin: 0 27px;
+}
 .portrait {
   width: 45px;
   height: auto;
@@ -74,6 +79,14 @@ const like = () => {
     max-height: 100%; /* set the maximum height of the image to prevent it from stretching */
     object-fit: cover;
   }
+  button {
+  background-image: url("./likes.svg");
+  background-size: cover;
+  border: none;
+  padding: 0;
+  width: 24.71px; /* set a width for the button */
+  height: 21.82px; /* set a height for the button */
+}
 
 [state='press'] {
   background-color: red;

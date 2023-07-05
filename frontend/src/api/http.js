@@ -1,11 +1,13 @@
 import axios from "axios"
 import {useUserStore} from '../store/user'
 const http = axios.create({
-  baseURL: "http://localhost:3000",
+  // baseURL: "http://localhost:3000",
+  baseURL: "http://192.168.3.90:3000",
     // 查询ip更改
   headers: {
     "Content-type": "application/json"
-  }
+  },
+  timeout: 5000 // 设置超时时间为5秒钟
 })
 // 拦截 axios 请求，在每次发送请求之前，从 pinia 获取 token
 http.interceptors.request.use( // Request Interceptor

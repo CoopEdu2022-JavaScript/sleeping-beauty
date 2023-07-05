@@ -5,28 +5,14 @@
     <Comment :comment="comment"/>
   </div>
   <!-- 这里应该有个评论框 -->
-  <input type="text" placeholder="comment" v-model="formData.content"><input type="submit" value="send" @click="send">
+  <input type="text" placeholder="comment" v-model="formData.content">
+  <input type="submit" value="send" @click="send">
   </template>
 
 <script setup>
 // 这里和 Feed 获取的逻辑一致，从列表里获取
-let post_list = reactive([
-{
-  name: "11111",
-  grade:"10",
-  time: "9:46",
-  content: "hahaha",
-  portrait: "./portrait/IMG_9608_1.png",
-  likes: 3,
-  id: 1,
-},
-])
-let comment_list = reactive([
-  {name:1,time:1,comment:1},
-  {name:2,time:2,comment:2},
-  {name:3,time:3,comment:3},
-  {name:4,time:4,comment:4},
-])
+let post_list = reactive([])
+let comment_list = reactive()
 
 // 跳转链接时传递参数的方式是 / 而不是 ?=，需要使用 params 来获取参数
 // 如果是 ?= 的形式，就是 query 获取参数
@@ -34,7 +20,10 @@ const post_id = useRoute().params.id
 
 // 发送 get 请求，和 Profile 的处理逻辑一致
 http.get(`/feed/detail/${post_id}`).then(rep => {
-  post_list.splice(0, 0, ...rep.data)  // reactively update data
+  console.log(111111111)
+  post_list.splice(0, 0, ...rep.data)
+  console.log(111111111,post_list)
+    // reactively update data
 })
 
 

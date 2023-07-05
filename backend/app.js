@@ -4,7 +4,10 @@ const router = require('./router')
 const cors = require('cors')
 
 const corsOptions = {
-  origin: "http://localhost:8080",
+  origin: 
+  
+  ["http://localhost:8080","http://192.168.3.90:8080"
+]
 };
 app.use(cors(corsOptions));
 

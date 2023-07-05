@@ -11,8 +11,9 @@ const dbConfig = {
 }
 
 let db = mysql.createConnection(dbConfig)
-// db.query(`INSERT INTO post (title, content, tag , user_id, time) VALUES ('hahahaha', 'moamaosd','323123' ,1, NOW())`, (err) => {
-//         console.log(1111122222)
+// db.query(`SELECT post.*, user.username, IF(likes.id, 1, 0) AS liked FROM post INNER JOIN user ON post.user_id = user.id
+// LEFT JOIN likes ON like.post_id = post.id and likes.user_id = 3 WHERE id = 30`, (err,data) => {
+//         console.log(data)
 //       })
 
 // const jwt_auth = require('./auth/index')

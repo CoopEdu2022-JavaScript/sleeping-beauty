@@ -1,8 +1,15 @@
 <template>
-  <input type="text" placeholder="title" v-model="formData.title">
-  <input type="text" placeholder="content" v-model="formData.content">
-  <input type="text" placeholder="tag" v-model="formData.tag">
-  <input type="submit" value="post" @click="post">
+  <NavBar></NavBar>
+  <div class="input-container">
+    <input type="text" placeholder="填写标题更容易被发现哦" v-model="formData.title">
+    <hr>
+    <input type="text" placeholder="输入内容" v-model="formData.content">
+    <input type="text" placeholder="#tag" v-model="formData.tag">
+    <hr>
+  </div>
+  <div class="post-container">
+      <input type="submit" value="post" @click="post" class="post">
+  </div>
 </template>
 
 <script setup>
@@ -27,4 +34,27 @@ console.log(formData)
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.input-container{
+  display: flex;
+  flex-direction: column;
+  margin-left: 33px;
+}
+input{
+  border: none;
+  word-wrap: break-word;
+}
+hr{
+  width: 336px;
+height: 0px;
+left: 33.5px;
+top: 228.5px;
+}
+.post-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+</style>

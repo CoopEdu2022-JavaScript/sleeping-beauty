@@ -28,6 +28,7 @@
   http.get('/feed').then(rep => { 
     console.log(rep)
     post_list.splice(0, post_list.length, ...rep.data)  // reactively update data
+    console.log(post_list)
   })
 </script>
 
@@ -38,14 +39,24 @@
     flex-wrap: nowrap; 
     justify-content: space-between;
   }
+
+  ::-webkit-scrollbar{
+    display: none;
+  }
   
   .tags {
     flex-shrink: 0;
-    width: 100%; /* 调整tag之间的间距 */
+    width: 95%; /* 调整tag之间的间距 */
+    margin: 0 10px;
   }
 
   .area {
   max-height: 730px;
   overflow: scroll;
+  }
+
+  hr {
+    height: 5.88px;
+    background-color: #eeedee ;
   }
 </style> 

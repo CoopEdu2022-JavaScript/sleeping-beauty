@@ -27,9 +27,10 @@ router.post('/editor', verifyToken, (req, res) => {
   let user_id = res.locals.token
   let title = req.body.title
   let content = req.body.content
+  let tag = req.body.tag
   console.log(title, content)
   console.log(user_id)
-  db.query(`INSERT INTO post (title, content, user_id, times) VALUES ('${title}', '${content}', ${user_id}, NOW())`, (err) => {
+  db.query(`INSERT INTO post (title, content, user_id, times,tag) VALUES ('${title}', '${content}', ${user_id}, NOW(),'${tag}')`, (err) => {
     if (err) res.status(500).json({ err })
     else res.send(true)
   })
