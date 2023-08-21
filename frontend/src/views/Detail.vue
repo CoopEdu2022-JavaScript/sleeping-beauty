@@ -6,7 +6,7 @@
   </div>
   <!-- 这里应该有个评论框 -->
   <input type="text" placeholder="comment" v-model="formData.content">
-  <input type="submit" value="send" @click="send">
+  <input type="submit" value="send" @click="sendComment">
   </template>
 
 <script setup>
@@ -18,15 +18,16 @@ let comment_list = reactive()
 // 如果是 ?= 的形式，就是 query 获取参数
 const post_id = useRoute().params.id
 
+
 // 发送 get 请求，和 Profile 的处理逻辑一致
 http.get(`/feed/detail/${post_id}`).then(rep => {
-  console.log(111111111)
-  console.log(rep)
+  // console.log(rep)
   post_list.splice(0, 0, ...rep.data)
   console.log(111111111,post_list)
     // reactively update data
 })
-//comment的post请求
+
+//comment的get请求
 http.get(`/feed/comment/${post_id}`).then(rep => {
   comment_list.splice(0, 0, ...rep.data)  // 这里相当于是在末尾插入rep.data，
 })
@@ -34,21 +35,18 @@ http.get(`/feed/comment/${post_id}`).then(rep => {
 
 
 //formData 就是我需要给后端发送的东西，里面包含了我给后端具体发送的东西，视情况增加
+// 向后端发送评论
 const formData = reactive({
   content: '',
   // user_id: storeToRefs(useUserStore()).user_id.value,
 })
 
 const router = useRouter()
-const send = () => {
-  alert(11111111111) 
+const sendComment = () => {
+
   if (!formData.content) return
-  alert(1.511115151515)
-  alert(formData)
   http.post(`feed/${post_id}/comment`, formData).then(rep => {
-    alert(222222222222)
     if (rep.data) {
-      alert(333333333333333)
       formData.content = ''
       router.go(0)
     }
