@@ -1,5 +1,6 @@
 const express = require('express')
-const mysql = require('mysql')
+const mysql = require('mysql');
+const { post } = require('./router/user');
 
 
 const dbConfig = {
@@ -11,23 +12,24 @@ const dbConfig = {
 }
 
 let db = mysql.createConnection(dbConfig)
-module.exports = mysql.createConnection(dbConfig);
 
-const post_id = 1; // 你要获取的 post_id 值
-const content = "你好";
-const user_id = 2;
+const post_id = 12; // 你要获取的 post_id 值
 
-const query = `
-  INSERT INTO comment (content, post_id, user_id, time) VALUES (?, ?, ?, NOW());
-  UPDATE post SET comments = comments + 1 WHERE id = ?;
+const query = 
+`
+SELECT comment.content, comment.time, user.username
+FROM comment
+INNER JOIN user ON comment.user_id = user.id
+WHERE comment.post_id = ?;
 `;
 
-db.query(query, [content, post_id, user_id, post_id], (err, results) => {
+db.query(query, [post_id], (err, results) => {
   if (err) {
-    console.error('Error executing query:', err);
+    console.error('Error fetching data:', err);
     return;
   }
-  console.log('Query results:', results);
+  console.log('Data with post_id', post_id, ':', results);
+  // 这里可以对结果进行进一步处理
 });
 
 // db.query(`SELECT post.*, user.username, IF(likes.id, 1, 0) AS liked FROM post INNER JOIN user ON post.user_id = user.id
@@ -80,7 +82,7 @@ db.query(query, [content, post_id, user_id, post_id], (err, results) => {
 // }
 
 // module.exports = {login, post, comment, get_detail};
-
+module.exports = mysql.createConnection(dbConfig);
 
 
 // //以下是接口

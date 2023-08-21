@@ -108,4 +108,18 @@ router.get('/detail/:id', verifyToken, (req, res) => {
   });
 });
 
+router.get('/comment/:id', verifyToken, (req, res) => {
+  let post_id = req.params.id;
+
+  // 查询以获取特定帖子的详细信息
+  db.query(`
+  SELECT comment.content, comment.time, user.username
+  FROM comment
+  INNER JOIN user ON comment.user_id = user.id
+  WHERE comment.post_id = ${post_id};
+  `, (err, data) => {
+    if (err) res.status(508).json({ err });
+    else res.send(data);
+  });
+});
 module.exports = router;

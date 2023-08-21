@@ -2,7 +2,7 @@ import axios from "axios"
 import {useUserStore} from '../store/user'
 const http = axios.create({
   baseURL: "http://localhost:3000",
-  baseURL: "http://10.79.212.64:3000",
+  baseURL: "http://192.168.12.170:3000",
     // 查询ip更改
   headers: {
     "Content-type": "application/json"

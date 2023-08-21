@@ -2,9 +2,12 @@
   <hr />
   <div>
     <img src="" alt="/">
-    <span>name: {{ comment.name }}</span>
+    <span>name: {{ comment.username }} </span>
+    <p></p>
     <span>time: {{ comment.time }}</span>
-    <span>comment: {{ comment.comment }}</span>
+    <p>
+    </p>
+    <span>comment: {{ comment.content }}</span>
   </div>
 </template>
 
