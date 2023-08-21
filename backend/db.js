@@ -11,6 +11,25 @@ const dbConfig = {
 }
 
 let db = mysql.createConnection(dbConfig)
+module.exports = mysql.createConnection(dbConfig);
+
+const post_id = 1; // 你要获取的 post_id 值
+const content = "你好";
+const user_id = 2;
+
+const query = `
+  INSERT INTO comment (content, post_id, user_id, time) VALUES (?, ?, ?, NOW());
+  UPDATE post SET comments = comments + 1 WHERE id = ?;
+`;
+
+db.query(query, [content, post_id, user_id, post_id], (err, results) => {
+  if (err) {
+    console.error('Error executing query:', err);
+    return;
+  }
+  console.log('Query results:', results);
+});
+
 // db.query(`SELECT post.*, user.username, IF(likes.id, 1, 0) AS liked FROM post INNER JOIN user ON post.user_id = user.id
 // LEFT JOIN likes ON like.post_id = post.id and likes.user_id = 3 WHERE id = 30`, (err,data) => {
 //         console.log(data)
@@ -61,7 +80,7 @@ let db = mysql.createConnection(dbConfig)
 // }
 
 // module.exports = {login, post, comment, get_detail};
-module.exports = mysql.createConnection(dbConfig);
+
 
 
 // //以下是接口
